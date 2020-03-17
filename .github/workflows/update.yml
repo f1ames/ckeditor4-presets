@@ -1,0 +1,17 @@
+name: Update ckeditor4 submodule
+
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  update:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/update@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          ./dev/gh-actions/ckeditorupdate.sh
