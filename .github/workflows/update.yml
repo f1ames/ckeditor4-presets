@@ -6,36 +6,20 @@ on:
 
 jobs:
 
-  update-master:
+  update:
     runs-on: ubuntu-latest
-    name: master
-
+    startegy:
+      matrix:
+        branch: [master, major]
     steps:
       - name: Fetch changes
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: ${{ matrix.branch }}
       - run: |
           ./dev/gh-actions/ckeditorupdate.sh
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
-
-  update-major:
-    runs-on: ubuntu-latest
-    name: major
-
-    steps:
-      - name: Fetch changes
-        uses: actions/checkout@v2
-        with:
-          ref: major
-      - run: |
-          ./dev/gh-actions/ckeditorupdate.sh
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: major
+          branch: ${{ matrix.branch }}
