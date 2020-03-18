@@ -8,7 +8,7 @@ jobs:
 
   update:
     runs-on: ubuntu-latest
-    startegy:
+    strategy:
       matrix:
         branch: [master, major]
     steps:
