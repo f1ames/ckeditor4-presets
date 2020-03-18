@@ -1,0 +1,13 @@
+name: Update ckeditor4 submodule
+
+on:
+  schedule:
+  - cron: "10 * * * *"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: update ckeditor submodule
+        run: |
+          ./dev/gh-actions/ckeditorupdate.sh
