@@ -5,21 +5,26 @@ on:
   - cron: "*/15 * * * *"
 
 jobs:
-
   update:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         branch: [master, major]
+
     steps:
       - name: Fetch changes
+        # https://github.com/marketplace/actions/checkout
         uses: actions/checkout@v2
         with:
           ref: ${{ matrix.branch }}
-      - run: |
-          echo ${{ github.ref }}
+
+      - name: Prepare update
+        run: |
           ./dev/gh-actions/ckeditorupdate.sh
+
       - name: Push changes
+        # https://github.com/marketplace/actions/github-push
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
