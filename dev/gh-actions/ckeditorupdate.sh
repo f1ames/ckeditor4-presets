@@ -2,14 +2,13 @@
 # Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
 # For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 
-# Update ckeditor submodule in active branches.
+# Used actions
+# https://github.com/marketplace/actions/checkout
+# https://github.com/marketplace/actions/github-push
+
+# Update ckeditor submodule in active branch.
 branch=$(git rev-parse --abbrev-ref HEAD)
 echo "Updating ckeditor4 submodule on ckeditor4-presets $branch branch..."
-
-# Checkout destination branch.
-#git fetch --all -p
-#git reset --hard "origin/$branch"
-git submodule update --init --recursive
 
 # Update ckeditor submodule branch.
 echo "Fetching latest ckeditor4 changes from $branch branch..."
@@ -27,7 +26,8 @@ else
 	echo "Updating $branch branch from $oldHash to $newHash..."
 
 	cd ".."
+	git config --local user.email "gh-actions@cksource.com"
+	git config --local user.name "CKSource GitHub Actions Bot"
 	git add ckeditor
 	git commit -m "Update CKEditor 4 submodule HEAD."
-	git push origin "$branch"
 fi
