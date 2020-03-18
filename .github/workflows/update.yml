@@ -5,10 +5,25 @@ on:
   - cron: "*/15 * * * *"
 
 jobs:
-  update:
+
+  update-master:
     runs-on: ubuntu-latest
-    name: update ckeditor submodule
+    name: update ckeditor submodule master
+
     steps:
-      - uses: actions/checkout@v1  
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - run: |
+          ./dev/gh-actions/ckeditorupdate.sh
+
+  update-major:
+    runs-on: ubuntu-latest
+    name: update ckeditor submodule major
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: major
       - run: |
           ./dev/gh-actions/ckeditorupdate.sh
