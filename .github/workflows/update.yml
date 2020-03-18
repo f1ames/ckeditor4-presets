@@ -1,0 +1,25 @@
+name: Update CKEditor 4 submodule
+
+on:
+  schedule:
+  - cron: "*/15 * * * *"
+
+jobs:
+
+  update:
+    runs-on: ubuntu-latest
+    startegy:
+      matrix:
+        branch: [master, major]
+    steps:
+      - name: Fetch changes
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ matrix.branch }}
+      - run: |
+          ./dev/gh-actions/ckeditorupdate.sh
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ matrix.branch }}
