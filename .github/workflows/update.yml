@@ -1,4 +1,4 @@
-name: Update ckeditor4 submodule
+name: Update ckeditor4 submodule on master/major branch
 
 on:
   schedule:
@@ -6,12 +6,8 @@ on:
 
 jobs:
   update:
-
     runs-on: ubuntu-latest
-
+    name: update ckeditor submodule
     steps:
-    - uses: actions/update@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
+      - run: |
           ./dev/gh-actions/ckeditorupdate.sh
