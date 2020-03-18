@@ -26,6 +26,6 @@ for branch in "master" "major"; do
 		cd ".."
 		git add ckeditor
 		git commit -m "Update CKEditor 4 submodule HEAD."
-		# git push origin "$branch"
+		git push origin "$branch"
 	fi
 done
