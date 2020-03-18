@@ -9,6 +9,7 @@ for branch in "master" "major"; do
 	# Checkout destination branch.
 	git fetch --all -p
 	git reset --hard "origin/$branch"
+	git submodule update --init --recursive
 
 	# Update ckeditor submodule branch.
 	echo "Fetching latest ckeditor4 changes from $branch branch..."
