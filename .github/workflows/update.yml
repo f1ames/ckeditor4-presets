@@ -17,6 +17,7 @@ jobs:
         with:
           ref: ${{ matrix.branch }}
       - run: |
+          echo ${{ github.ref }}
           ./dev/gh-actions/ckeditorupdate.sh
       - name: Push changes
         uses: ad-m/github-push-action@master
