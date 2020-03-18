@@ -2,7 +2,7 @@ name: Update CKEditor 4 submodule
 
 on:
   schedule:
-  - cron: "*/15 * * * *"
+  - cron: "0 0,10,16 * * *"
 
 jobs:
   update:
@@ -21,7 +21,7 @@ jobs:
 
       - name: Prepare update
         run: |
-          ./dev/gh-actions/ckeditorupdate.sh
+          ./dev/workflows/ckeditorupdate.sh
 
       - name: Push changes
         # https://github.com/marketplace/actions/github-push
