@@ -16,7 +16,7 @@ jobs:
         with:
           ref: master
           submodules: true
-        run: |
+      - run: |
           ./dev/gh-actions/ckeditorupdate.sh
       - name: Push changes
         uses: ad-m/github-push-action@master
@@ -34,7 +34,7 @@ jobs:
         with:
           ref: major
           submodules: true
-        run: |
+      - run: |
           ./dev/gh-actions/ckeditorupdate.sh
       - name: Push changes
         uses: ad-m/github-push-action@master
