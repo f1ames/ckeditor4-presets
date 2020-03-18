@@ -11,11 +11,13 @@ for branch in "master" "major"; do
 	git reset --hard "origin/$branch"
 
 	# Update ckeditor submodule branch.
+	echo "Fetching latest ckeditor4 changes from $branch branch..."
+
 	cd "ckeditor"
-	oldHash=$(git hash)
+	oldHash=$(git log -1 --format="%h")
 	git fetch --all -p
 	git reset --hard "origin/$branch"
-	newHash=$(git hash)
+	newHash=$(git log -1 --format="%h")
 
 	# Check if anything changed and push to remote.
 	if [ "$oldHash" = "$newHash" ]; then
