@@ -15,7 +15,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
-          submodules: true
       - run: |
           ./dev/gh-actions/ckeditorupdate.sh
       - name: Push changes
@@ -33,7 +32,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: major
-          submodules: true
       - run: |
           ./dev/gh-actions/ckeditorupdate.sh
       - name: Push changes

@@ -10,6 +10,8 @@
 branch=$(git rev-parse --abbrev-ref HEAD)
 echo "Updating ckeditor4 submodule on ckeditor4-presets $branch branch..."
 
+git submodule update --init --recursive
+
 # Update ckeditor submodule branch.
 echo "Fetching latest ckeditor4 changes from $branch branch..."
 
