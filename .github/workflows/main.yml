@@ -1,4 +1,4 @@
-name: Update ckeditor4 submodule
+name: Update ckeditor4 submodule on master/major branch
 
 on:
   schedule:
