@@ -23,8 +23,12 @@ jobs:
         # https://github.com/marketplace/actions/checkout-submodules
         uses: textbook/git-checkout-submodule-action@master
 
-      - name: Prepare update commit
+      - name: Bump "ckeditor" submodule
         run: |
+          cd ckeditor
+          git fetch --all
+          git co ${{ matrix.branch }}
+          cd ..
           if [[ $(git diff origin/${{ matrix.branch }} | wc -c) -ne 0 ]]; then
             git config --local user.email "ckeditor-bot@cksource.com"
             git config --local user.name "CKEditor Bot"
