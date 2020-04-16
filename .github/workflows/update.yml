@@ -25,10 +25,12 @@ jobs:
 
       - name: Prepare update commit
         run: |
-          git config --local user.email "ckeditor-bot@cksource.com"
-          git config --local user.name "CKEditor Bot"
-          git add ckeditor
-          git commit -m "Update CKEditor 4 submodule HEAD."
+          if [[ $(git diff origin/${{ matrix.branch }} | wc -c) -ne 0 ]]; then
+            git config --local user.email "ckeditor-bot@cksource.com"
+            git config --local user.name "CKEditor Bot"
+            git add ckeditor
+            git commit -m "Update CKEditor 4 submodule HEAD."
+          fi
 
       - name: Push changes
         # https://github.com/marketplace/actions/github-push
