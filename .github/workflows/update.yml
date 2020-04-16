@@ -27,7 +27,7 @@ jobs:
         run: |
           cd ckeditor
           git fetch --all
-          git co ${{ matrix.branch }}
+          git checkout ${{ matrix.branch }}
           cd ..
           if [[ $(git diff origin/${{ matrix.branch }} | wc -c) -ne 0 ]]; then
             git config --local user.email "ckeditor-bot@cksource.com"
